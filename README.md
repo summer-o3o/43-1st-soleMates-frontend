@@ -90,3 +90,201 @@ Communication <img alt="Slack" src ="https://img.shields.io/badge/Slack-4A154B.s
 | List | - Map 매서드를 이용해서 product list 화면 구현<br />- Product image에 좋아요 버튼 구현<br />- Product image 마우스 호버시 장바구니 버튼 구현<br />- 장바구니 버튼 클릭시장바구니 모달창 생성 구현<br />- 장바구니 모달창에서 제품 사이즈 선택<br />- 필터에서 사이즈, 색깔 선택시 Query String  이용해서 구현 | 이기태 |
 | Detail | - 동적라우팅 구현 <br />- 좋아요 및 취소 기능 (수량 증가 및 감소)<br />- 윈도우 스크롤 버튼을 이용한 스크롤 이동<br />- 제품 사이즈 옵션 구현<br />- 수량증가 버튼<br />- 수량증가에 따른 가격증가 표시<br />- 색상 선택 버튼<br />- 장바구니 버튼 클릭 시 모달창 생성<br />- 장바구니 확인 버튼 클릭 시 DB로 데이터 전송 및 장바구니 페이지 이동<br />- 리뷰 기능을 토큰이 있는 유저만 사용이 가능하게 구현<br />- 리뷰 게시버튼 클릭 시 DB로 데이터 POST 후 렌더링을 통한 리뷰 UI생성<br /> | 홍태훈 |
 | Cart | - 수량증가<br />- 삭제버튼<br />- 총 가격<br />- 총 수량<br />- 장바구니에 담긴상품이 없을때 빈 페이지 | 김수미 |
+
+<br />
+<br />
+<br />
+
+#### 🚀 My Part Info
+
+[메인, 헤더, 푸터]
+- 네비게이션 스크롤 고정
+- 케러셀
+- 컴포넌트화
+- 동적라우팅
+- 총 장바구니수량
+    - 최대 99개까지만 표시되도록 구현
+- 로그아웃
+    - 로그아웃 기능을 구현할 때는 로그아웃 의사를 물어보고 이동되도록 구현.
+- 회원이 아니라면 접근불가 (장바구니, 찜하기)
+    - 로그인 상태가 아닐때 의사를 물어보고 로그인 페이지로 이동되도록 구현.
+    
+<br />
+<br />
+    
+    
+[장바구니]
+- 체크박스
+- 선택삭제
+- 수량증가
+- 총가격
+- 총 수량
+- 컴포넌트화
+- 상품삭제
+- 장바구니에 상품이 없을때 빈페이지
+
+
+
+
+
+
+<br />
+<br />
+<br />
+
+#### 👀 Learned
+- 조건과 부여하는 값이 동일하다면 간단하게 축약할 수있다.
+
+수정 전
+
+```jsx
+if (scrollTop > threshold) {
+	setIsSticky(true);
+} else {
+	setIsSticky(false);
+}
+```
+
+수정 후
+
+```jsx
+if (setIsSticky(scrollTop > threshold)) {
+	setIsSticky(true);
+}
+```
+
+- 텍스트 형태는 중괄호를 빼도 된다.
+
+수정 전
+
+```jsx
+<LinkUtil
+icoClass={'ico_cart'}
+icoName={'장바구니'}
+typeCart={'type_cart'}
+/>
+```
+
+수정 후
+
+```jsx
+<LinkUtil
+icoClass='ico_cart'
+icoName='장바구니'
+typeCart='type_cart'
+/>
+```
+
+- default props 적용
+  - props를 부모에서 빈 스트링을 보내는 경우가 있다.
+  - 이럴 때는 default props 를 적용
+
+수정 전
+
+```jsx
+<LinkUtil icoClass={''} icoName={'로그인'} typeCart={''} />
+<LinkUtil icoClass={'ico_cart'} icoName={'장바구니'} typeCart={true} />
+<LinkUtil icoClass={'ico_wish'} icoName={'찜목록'} typeCart={''} />
+```
+
+수정 후
+
+```jsx
+<LinkUtil icoName="로그인" />
+<LinkUtil icoClass="ico_cart" icoName="장바구니" typeCart="type_cart" />
+<LinkUtil icoClass="ico_wish" icoName="찜목록" />
+
+LinkUtil.defaultProps = {
+  icoClass: '',
+  icoName: '',
+  typeCart: '',
+  totalCart: 0,
+};
+```
+
+- state 업데이트시 이전의 값을 참고하는 형태이므로 함수형 업데이트 적용 ( 콜백함수 )
+  - 이전 상태값이 필요할때 사용한다고 생각하면됨
+  - ex) 카운트, 메인 슬라이드
+  - 로그인의 경우 이전 값이 필요 없기 때문에 사용 x
+  - 모달의 경우 이전값이 필요없고 false일때만 노출되면 되기때문에 필요없음
+  - 성능면에서도 더 좋음
+
+예시
+
+```jsx
+setState(newState); // 1. 새로운 state가 될 값을 인자로 전달하는 경우
+setState(prevState => newState); // 2. callback함수를 인자로 전달하는 경우
+
+const [count, setCount] = useState(0);
+
+// ver.1
+const increaseCount = () => setCount(count + 1);
+
+// ver2.
+const increaseCount = () => setCount(prevCount => prevCount + 1);
+```
+
+수정 전
+
+```jsx
+const nextSlide = () => {
+	if (currentSlide >= TOTAL_SLIDES) {
+	setCurrentSlide(0);
+	} else {
+      setCurrentSlide(currentSlide => currentSlide + 1);
+	}
+};
+```
+
+수정 후
+
+```jsx
+const nextButton = () => {
+    if (currentSlide >= totalSlide) {
+      setCurrentSlide(0);
+    } else {
+      setCurrentSlide(currentSlide => currentSlide + 1);
+    }
+  };
+```
+
+- 구조분해 할당
+
+수정 전
+
+```jsx
+{TOP_SLIDE.map(item => (
+<div className="wrap_bnr" key={item.id}>
+	<div className="wrap_bnr" key={item.id}>
+		<div className="group_bnr">
+		<strong className="tit_noti">{item.title}</strong>
+		<p className="desc_noti">{item.desc}</p>
+	</div>
+</div>
+))}
+```
+
+수정 후
+
+```jsx
+{TOP_SLIDE.map(({ id, title, desc }) => (
+<div className="wrap_bnr" key={id}>
+	<div className="group_bnr">
+		<strong className="tit_noti">{title}</strong>
+		<p className="desc_noti">{desc}</p>
+	</div>
+</div>
+))}
+```
+
+- 스트링에서 넘버 타입으로 변경할땐 때에따라 다르지만, 보통 Number보단 parseInt가 더 좋다
+
+```jsx
+// Parsing
+parseInt('32px'); // 32
+parseInt('5e1'); // 5
+
+// Convert type
+Number('32px'); // NaN
+Number('5e1'); // 50
+```
