@@ -52,7 +52,8 @@
 <br><br>
 
 ## 메인, 헤더, 푸터
-<img width="700px" align="center" src="https://user-images.githubusercontent.com/89458455/226306078-13850f26-4a7d-4078-9e1e-009346769278.GIF">
+<img width="700px" align="center" src="https://user-images.githubusercontent.com/89458455/234179483-11f9cd49-18c1-4f6c-916f-4ed88b842950.GIF">
+<img width="700px" align="center" src="https://user-images.githubusercontent.com/89458455/234179777-fe7f23cb-40ec-4fc5-a338-dff0906434bb.GIF">
 
 - 메인과 헤더에 라이브러리를 사용하지 않고 케러셀을 구현했어요.
 - 헤더를 스크롤 고정해서, 사용자에게 편의성을 증가시켰어요.
