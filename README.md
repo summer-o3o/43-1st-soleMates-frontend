@@ -43,7 +43,7 @@
 
 
 ## 로그인, 회원가입
-<img width="700px" align="center" src="https://user-images.githubusercontent.com/89458455/226306034-81f03632-bd96-4ab8-86a4-532c25fad44f.GIF">
+<img width="500px" align="center" src="https://user-images.githubusercontent.com/89458455/226306034-81f03632-bd96-4ab8-86a4-532c25fad44f.GIF">
 
 - 로컬스토리지에 저장된 토큰 유무에따라 로그인 로그아웃, 마이페이지, 찜하기 구현했어요.
 - 정규식을 사용하여 회원가입유효성 검사를 했어요.
@@ -52,8 +52,8 @@
 <br><br>
 
 ## 메인, 헤더, 푸터
-<img width="700px" align="center" src="https://user-images.githubusercontent.com/89458455/234179483-11f9cd49-18c1-4f6c-916f-4ed88b842950.GIF">
-<img width="700px" align="center" src="https://user-images.githubusercontent.com/89458455/234179777-fe7f23cb-40ec-4fc5-a338-dff0906434bb.GIF">
+<img width="500px" align="center" src="https://user-images.githubusercontent.com/89458455/234179483-11f9cd49-18c1-4f6c-916f-4ed88b842950.GIF">
+<img width="500px" align="center" src="https://user-images.githubusercontent.com/89458455/234179777-fe7f23cb-40ec-4fc5-a338-dff0906434bb.GIF">
 
 - 슬라이드하여 보여주는 케러셀 기능을 라이브러리를 사용하지 않고 React의 useRef, useState, useEffect를 활용해서 슬라이드의 애니메이션 효과를 transition과 transform을 사용하여 구현했어요.
 - position:sticky를 사용하여 스크롤 내렸을때도 고정되도록 구현했어요.
@@ -62,7 +62,7 @@
 <br><br>
 
 ## 상품 리스트
-<img width="700px" align="center" src="https://user-images.githubusercontent.com/124991622/226310059-ea4aa0bf-2680-48e3-83a9-ae37b88da9c0.GIF">
+<img width="500px" align="center" src="https://user-images.githubusercontent.com/124991622/226310059-ea4aa0bf-2680-48e3-83a9-ae37b88da9c0.GIF">
 
 - 상품을 찜할수 있어요.
 - 상품호버시 모달이 노출되어, 상세페이지로 가지 않아도 장바구니로 바로 갈수있게 했어요.
@@ -70,9 +70,9 @@
 <br><br>
 
 ## 상품 상세페이지
-<img width="700px" align="center" src="https://user-images.githubusercontent.com/122140479/226307272-f6022b92-3e12-4b22-b4f3-03f28fa83c66.gif">
-<img width="700px" align="center" src="https://user-images.githubusercontent.com/122140479/226307166-28190a97-dbc2-4f5d-9fe8-0d754de10cea.gif">
-<img width="700px" align="center" src="https://user-images.githubusercontent.com/122140479/226307292-5b3ed4b5-9afc-4bc7-9522-ba1a6fe48af2.gif">
+<img width="500px" align="center" src="https://user-images.githubusercontent.com/122140479/226307272-f6022b92-3e12-4b22-b4f3-03f28fa83c66.gif">
+<img width="500px" align="center" src="https://user-images.githubusercontent.com/122140479/226307166-28190a97-dbc2-4f5d-9fe8-0d754de10cea.gif">
+<img width="500px" align="center" src="https://user-images.githubusercontent.com/122140479/226307292-5b3ed4b5-9afc-4bc7-9522-ba1a6fe48af2.gif">
 
 - 상품의 수량을 증가할수 있도록했어요.
 - 상품의 색상, 사이즈를 고를수 있도록 했어요.
@@ -84,7 +84,7 @@
 <br><br>
 
 ## 장바구니
-<img width="700px" align="center" src="https://user-images.githubusercontent.com/89458455/226306141-6c3009b1-a9fb-4f5c-b7f4-0ce728861f12.GIF">
+<img width="500px" align="center" src="https://user-images.githubusercontent.com/89458455/226306141-6c3009b1-a9fb-4f5c-b7f4-0ce728861f12.GIF">
 
 - useState와 useEffect를 활용하여 장바구니 데이터를 서버로부터 가져와 화면에 표시했어요.
 - 백엔드에서 보내준 데이터의 길이를 체크하여 빈배열일경우 빈화면 마크업이되어있는 컴포넌트를랜더링하고 빈배열이 아닐경우, 장바구니 컴포넌트를 렌더링되게 구현했어요.
