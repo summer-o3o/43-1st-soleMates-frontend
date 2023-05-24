@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+import firebase, { auth } from '../../firebase';
+
 import './Account.scss';
 const Account = () => {
   const [inputValues, setInputValues] = useState({
@@ -29,50 +31,38 @@ const Account = () => {
   const signUp = event => {
     if (name.length >= 2 && pwCheck && pwCorrect === pw && checkEmail) {
       event.preventDefault();
-      fetch('http://10.58.52.94:3000/users/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password: pw,
-        }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.message === 'SUCCESS_SIGNUP') {
-            event.preventDefault();
-            alert('회원가입 성공');
-            setInputValues({ name: '', email: '', pw: '', pwCorrect: '' });
-            navigate('/login');
-          }
+      auth
+        .createUserWithEmailAndPassword(email, pw)
+        .then(() => {
+          alert('회원가입 성공');
+          setInputValues({ name: '', email: '', pw: '', pwCorrect: '' });
+          navigate('/login');
+        })
+        .catch(error => {
+          // 회원가입 실패 처리
+          console.log(error);
+          alert('회원가입 실패');
         });
     } else {
       alert('다시 확인해주세요');
     }
   };
+
   const logIn = event => {
     event.preventDefault();
-    fetch('http://10.58.52.94:3000/users/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        email,
-        password: pw,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-          navigate('/');
-        } else {
-          alert('다시 시도해주세요.');
-        }
+
+    auth
+      .signInWithEmailAndPassword(email, pw)
+      .then(userCredential => {
+        // 로그인 성공 시 처리
+        const user = userCredential.user;
+        localStorage.setItem('token', user.uid);
+        navigate('/');
+      })
+      .catch(error => {
+        // 로그인 실패 시 처리
+        const errorMessage = error.message;
+        alert('다시 시도해주세요: ' + errorMessage);
       });
   };
   const submit = location.pathname === '/login' ? logIn : signUp;
